@@ -1,0 +1,19 @@
+{
+  "name": "hmsrct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Mano Sriram",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
+    "nodemon": "^1.19.1"
+  }
+}
