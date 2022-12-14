@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Transaction = require("../models/transaction");
 const User = require("../models/user");
+const Ethereum = require("../models/ethereum");
 const get = require("../utils/request");
+const getAndStoreEthereumPrice = require("../utils/eth");
 
 router.get("/:address", async (req, res) => {
   const { address } = req.params;
@@ -36,6 +38,20 @@ router.get("/:address", async (req, res) => {
   user.save();
 
   return res.json(transactions);
+});
+
+router.get("/balance/:address", async (req, res) => {
+  const { address } = req.params;
+  const user = await User.findOne({ address });
+  const eth = await Ethereum.find({});
+  let price;
+  if (!eth.length) {
+    price = await getAndStoreEthereumPrice();
+  } else {
+    price = eth[0].price;
+  }
+
+  return res.json({ balance: user.balance, ethereum_price: price });
 });
 
 module.exports = router;
