@@ -9,10 +9,7 @@ const transactions = require("./routes/transaction");
 app.use(express.json());
 
 mongoose
-  .connect(
-    // "mongodb+srv://mano:Mano1234@cluster0.k5vivuo.mongodb.net/?authSource=admin&ssl=true&retryWrites=true&w=majority"
-    "mongodb://localhost:27017/koinx"
-  )
+  .connect("mongodb://localhost:27017/koinx")
   .then(() => console.log("mongodb connected !"))
   .catch((err) => console.log(err));
 
