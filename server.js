@@ -9,10 +9,7 @@ const transactions = require("./routes/transaction");
 app.use(express.json());
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@koinxtest.s4kwu3l.mongodb.net/test?retryWrites=true&w=majority`
-    // "mongodb://localhost:27017/koinx"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("mongodb connected !"))
   .catch((err) => console.log(err));
 
