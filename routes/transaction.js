@@ -8,12 +8,11 @@ const getAndStoreEthereumPrice = require("../utils/eth");
 
 router.get("/:address", async (req, res) => {
   const { address } = req.params;
-  const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=KGN1QKSIMYEGCYSVIX3NRBQMB4E7112EF3`;
+  const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${process.env.ETHERSCAN_API_KEY}`;
   const transactions = await get(url);
   const txns = transactions.result;
 
   let allTransactions = [];
-  console.log(txns.length);
   let balance = 0;
   for (let t = 0; t < txns.length; ++t) {
     if (txns[t].to === address) {
