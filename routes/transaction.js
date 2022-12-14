@@ -39,6 +39,7 @@ router.get("/:address", async (req, res) => {
 
     return res.status(200).json(transactions);
   } catch (err) {
+    console.error("error: ", err);
     return res.status(500).json({ message: "some error occured" });
   }
 });
@@ -59,6 +60,7 @@ router.get("/balance/:address", async (req, res) => {
       .status(200)
       .json({ balance: user.balance, ethereum_price: price });
   } catch (err) {
+    console.error("error: ", err);
     return res.status(500).json({ message: "some error occured" });
   }
 });
